@@ -12,15 +12,26 @@ const getAllproductsFronDB = async () => {
 };
 
 const getSingleProductFromDB = async (_id: string) => {
-  const result = await ProductModel.findById({ _id});
+  const result = await ProductModel.findById({ _id });
   if (!result) {
     throw new Error('Product not found');
   }
   return result;
 };
 
+const updateSingleProductInDB = async (id: string, product: Product) => {
+  try {
+    const result = await ProductModel.findOneAndUpdate({ _id: id }, product, { new: true });
+    return result;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error('Failed to update product');
+  }
+};
+
 export const productService = {
   createProductIntoDB,
   getAllproductsFronDB,
   getSingleProductFromDB,
+  updateSingleProductInDB,
 };

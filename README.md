@@ -41,6 +41,6 @@ npm run start:dev
 
 ## Important Links
 
-Live server link : https://e-commerce-management-system.vercel.app/
-All Products link : https://e-commerce-management-system.vercel.app/api/products
-All orders link : https://e-commerce-management-system.vercel.app/api/orders
+- Live server link : https://e-commerce-management-system.vercel.app/
+- All Products link : https://e-commerce-management-system.vercel.app/api/products
+- All orders link : https://e-commerce-management-system.vercel.app/api/orders

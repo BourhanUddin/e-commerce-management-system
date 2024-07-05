@@ -15,5 +15,12 @@ app.use('/api/orders', orderRouters);
 app.get('/', (req: Request, res: Response) => {
   res.send('E-Commmerce Management System ');
 });
+//not found route
+app.all('*', (req: Request, res: Response) => {
+  return res.status(404).json({
+    success: false,
+    message: 'Route not found',
+  });
+});
 
 export default app;

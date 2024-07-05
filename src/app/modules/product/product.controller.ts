@@ -14,7 +14,6 @@ const createProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: (error as Error).message,
@@ -41,7 +40,6 @@ const getAllProducts = async (req: Request, res: Response) => {
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: (error as Error).message,
@@ -71,7 +69,6 @@ const updateSingleProduct = async (req: Request, res: Response) => {
   try {
     const id = req.params.productId;
     const product = req.body;
-    console.log('Request body:', product); // Log request body for debugging
     const value = ProductValidation.parse(product);
     const result = await productService.updateSingleProductInDB(id, value);
     res.status(200).json({
@@ -80,7 +77,6 @@ const updateSingleProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: (error as Error).message,
@@ -98,7 +94,6 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: (error as Error).message,
@@ -116,7 +111,6 @@ const searchProducts = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: (error as Error).message,

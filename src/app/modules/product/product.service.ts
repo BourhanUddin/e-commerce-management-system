@@ -26,7 +26,6 @@ const updateSingleProductInDB = async (id: string, product: Product) => {
     });
     return result;
   } catch (error: any) {
-    console.log(error);
     throw new Error('Failed to update product');
   }
 };
@@ -39,7 +38,6 @@ const deleteSingleProductFromDB = async (id: string) => {
     }
     return result;
   } catch (error: any) {
-    console.log(error);
     throw new Error('Failed to delete product');
   }
 };
@@ -55,7 +53,6 @@ const searchProductsInDB = async (query: string) => {
     });
     return result;
   } catch (error: any) {
-    console.log(error);
     throw new Error('Failed to search products');
   }
 };

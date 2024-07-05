@@ -29,9 +29,23 @@ const updateSingleProductInDB = async (id: string, product: Product) => {
   }
 };
 
+const deleteSingleProductFromDB = async (id : string)=>{
+  try {
+    const result = await ProductModel.findByIdAndDelete(id);
+    if (!result) {
+      throw new Error('Product not found');
+    }
+    return result;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error('Failed to delete product');
+  }
+}
+
 export const productService = {
   createProductIntoDB,
   getAllproductsFronDB,
   getSingleProductFromDB,
   updateSingleProductInDB,
+  deleteSingleProductFromDB
 };

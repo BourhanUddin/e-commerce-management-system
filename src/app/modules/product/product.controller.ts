@@ -24,12 +24,22 @@ const createProduct = async (req: Request, res: Response) => {
 
 const getAllProducts = async (req: Request, res: Response) => {
   try {
-    const result = await productService.getAllproductsFronDB();
-    res.status(200).json({
-      success: true,
-      message: 'Products fetched successfully!',
-      data: result,
-    });
+    const searchTerm = req.query.searchTerm as string;
+    if (searchTerm) {
+      const result = await productService.searchProductsInDB(searchTerm);
+      res.status(200).json({
+        success: true,
+        message: 'Products found successfully!',
+        data: result,
+      });
+    } else {
+      const result = await productService.getAllproductsFronDB();
+      res.status(200).json({
+        success: true,
+        message: 'Products fetched successfully!',
+        data: result,
+      });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -96,10 +106,29 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
+const searchProducts = async (req: Request, res: Response) => {
+  try {
+    const query = req.query.q as string;
+    const result = await productService.searchProductsInDB(query);
+    res.status(200).json({
+      success: true,
+      message: "Products matching search term 'iphone' fetched successfully!",
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: (error as Error).message,
+    });
+  }
+};
+
 export const productController = {
   createProduct,
   getAllProducts,
   getSingleProduct,
   updateSingleProduct,
   deleteSingleProduct,
+  searchProducts,
 };

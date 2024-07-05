@@ -21,7 +21,9 @@ const getSingleProductFromDB = async (_id: string) => {
 
 const updateSingleProductInDB = async (id: string, product: Product) => {
   try {
-    const result = await ProductModel.findOneAndUpdate({ _id: id }, product, { new: true });
+    const result = await ProductModel.findOneAndUpdate({ _id: id }, product, {
+      new: true,
+    });
     return result;
   } catch (error: any) {
     console.log(error);
@@ -29,7 +31,7 @@ const updateSingleProductInDB = async (id: string, product: Product) => {
   }
 };
 
-const deleteSingleProductFromDB = async (id : string)=>{
+const deleteSingleProductFromDB = async (id: string) => {
   try {
     const result = await ProductModel.findByIdAndDelete(id);
     if (!result) {
@@ -40,12 +42,29 @@ const deleteSingleProductFromDB = async (id : string)=>{
     console.log(error);
     throw new Error('Failed to delete product');
   }
-}
+};
+
+const searchProductsInDB = async (query: string) => {
+  try {
+    const result = await ProductModel.find({
+      $or: [
+        { name: { $regex: query, $options: 'i' } },
+        { description: { $regex: query, $options: 'i' } },
+        { category: { $regex: query, $options: 'i' } },
+      ],
+    });
+    return result;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error('Failed to search products');
+  }
+};
 
 export const productService = {
   createProductIntoDB,
   getAllproductsFronDB,
   getSingleProductFromDB,
   updateSingleProductInDB,
-  deleteSingleProductFromDB
+  deleteSingleProductFromDB,
+  searchProductsInDB
 };

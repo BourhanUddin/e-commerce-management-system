@@ -16,7 +16,7 @@ Make sure you have the following software installed on your machine:
 
 - TO run the project on your local machine you have to follow the given steps:
 
-1.**download or clone repository**
+  1.**download or clone repository**
 
 ```git bash
 git clone https://github.com/BourhanUddin/e-commerce-management-system.git
@@ -41,6 +41,6 @@ npm run start:dev
 
 ## Important Links
 
-```
-
-```
+Live server link : https://e-commerce-management-system.vercel.app/
+All Products link : https://e-commerce-management-system.vercel.app/api/products
+All orders link : https://e-commerce-management-system.vercel.app/api/orders

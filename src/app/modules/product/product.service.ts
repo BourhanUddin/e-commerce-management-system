@@ -66,5 +66,5 @@ export const productService = {
   getSingleProductFromDB,
   updateSingleProductInDB,
   deleteSingleProductFromDB,
-  searchProductsInDB
+  searchProductsInDB,
 };
